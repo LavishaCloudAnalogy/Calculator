@@ -14,8 +14,19 @@ export default function App() {
     }
   },[])
 
+  const operators=["+","-","*","/"];
+
+
   const handleClick = (value: string) => {
-    setInput((prev) => prev + value);
+    setInput((prev) =>{
+      if(operators.includes(value) && prev==="" && value!=='-'){
+        return prev;
+      }
+      const lastChar=prev.slice(-1);
+      if(operators.includes(lastChar) && operators.includes(value)){
+        return prev
+      }
+      return prev+value;    });
   };
 
   const handleClear = () => {
